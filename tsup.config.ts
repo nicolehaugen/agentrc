@@ -46,7 +46,11 @@ export default defineConfig({
   sourcemap: true,
   dts: false,
   banner: {
-    js: "#!/usr/bin/env node"
+    js: [
+      "#!/usr/bin/env node",
+      'import { createRequire } from "module";',
+      "const require = createRequire(import.meta.url);"
+    ].join("\n")
   },
   // Keep node_modules as external — they'll be installed via npm
   external: [/^[^./]/],
